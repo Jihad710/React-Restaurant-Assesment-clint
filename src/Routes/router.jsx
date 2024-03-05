@@ -11,7 +11,7 @@ import Home from "../Pages/Home/Home/Home";
       element: <Main/>,
       children:[
         {
-            path: '/',
+            path: "/",
             element: <Home/>
         }
       ]
