@@ -1,4 +1,4 @@
-import menuimg from '../../../../assets/Featured/clem-onojeghuo-zlABb6Gke24-unsplash.jpg';
+import menuimg from '../../../../assets/Featured/edgar-castrejon-1SPu0KT-Ejg-unsplash.jpg';
 import saladImg from '../../../../assets/FoodCategory/Salad.jpg';
 import pizzaImg from '../../../../assets/FoodCategory/Pizza.jpg';
 import soupImg from '../../../../assets/FoodCategory/Soup.jpg';
@@ -17,8 +17,8 @@ const Menu = () => {
   const offered = menu.filter((item) => item.category === 'offered');
 
   return (
-    <div className="container mx-auto mb-10">
-      <Cover img={menuimg} />
+    <div className="mb-3 bg-black text-white">
+       <Cover img={menuimg} title="our menu"></Cover>
       <SectionTitle subHeading="Don't Miss" heading="Today's Offer" />
       {/* Offered menu items */}
       <MenuCategory items={offered} />
