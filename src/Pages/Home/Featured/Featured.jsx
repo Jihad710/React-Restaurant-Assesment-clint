@@ -21,7 +21,7 @@ const Featured = () => {
             burgers with satanic pineaples, lots of spilled salt and some more
             tequila. Looks like someone forgot to drink that beer.
           </p>
-          <button className="btn btn-outline text-white border-0 border-b-4  mt-3 ">
+          <button className="btn btn-warning text-white border-0 border-b-4  mt-3 ">
             Order Now
           </button>
         </div>

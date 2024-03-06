@@ -12,21 +12,17 @@ const Category = () => {
   return (
     <section>
       <SectionTitle
-        subHeading={"From 11.00am to 10.00pm"}
+        subHeading={"We see our customers as invited guests to a party, and we are the hosts. It’s our job every day to make every important aspect of the customer experience a little bit better. "}
         heading={"Order Online"}
       ></SectionTitle>
 
       <Swiper
-        slidesPerView={4}
-        spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        className="mySwiper mb-24"
+        slidesPerView={5}
+        className="mySwiper mb-24 "
       >
         <SwiperSlide>
           <img src={slide1} alt="" />
-          <h3 className="text-4xl uppercase text-center -mt-16 text-white">
+          <h3 className="text-4xl uppercase  -mt-16 text-white">
             Salads
           </h3>
         </SwiperSlide>
@@ -54,7 +50,17 @@ const Category = () => {
             Salads
           </h3>
         </SwiperSlide>
+        <SwiperSlide>
+          <img src={slide5} alt="" />
+          <h3 className="text-4xl uppercase text-center -mt-16 text-white">
+            Salads
+          </h3>
+        </SwiperSlide>
       </Swiper>
+
+      <button className="btn btn-outline text-white border-0 border-b-4 mt-3 ">
+        Order Now
+      </button>
     </section>
   );
 };
