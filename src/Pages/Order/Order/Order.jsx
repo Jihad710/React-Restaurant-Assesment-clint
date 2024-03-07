@@ -20,7 +20,7 @@ const Order = () => {
     return (
         <div className="mx-auto bg-black "> 
             <Cover img={orderCover} title="Order Food"></Cover>
-            <div className="flex justify-center space-x-4 mt-4 flex-wrap"> {/* Flex container for tabs */}
+            <div className="flex justify-center space-x-4 mt-4 flex-wrap"> 
                 {categories.map((category, index) => (
                     <button
                         key={index}
@@ -33,7 +33,7 @@ const Order = () => {
                     </button>
                 ))}
             </div>
-            <div className="mt-4 flex justify-center"> {/* Center cards */}
+            <div className="mt-4 flex justify-center"> 
                 {tabIndex === 0 && <OrderTab items={salad} />}
                 {tabIndex === 1 && <OrderTab items={pizza} />}
                 {tabIndex === 2 && <OrderTab items={soup} />}

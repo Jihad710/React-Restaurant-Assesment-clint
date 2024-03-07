@@ -1,8 +1,5 @@
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-
-
 import FoodCard from "../../../components/FoodCard/FoodCard";
 
 // todo: implement pegination here on this page
