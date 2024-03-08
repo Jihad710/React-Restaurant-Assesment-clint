@@ -1,101 +1,121 @@
-import { useContext, useEffect, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
 
 import Swal from 'sweetalert2';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+import { HiEye, HiEyeOff } from 'react-icons/hi';
 import { AuthContext } from '../../providers/AuthProvider';
 
 
-const Login = () => {
 
 
-const [disabled,setDisable] = useState(true)
-const {signIn} = useContext(AuthContext);
-const navigate = useNavigate();
-const location = useLocation();
+function Login() {
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-const from = location.state?.from?.pathname || "/";
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prevVisible) => !prevVisible);
+  };
 
-  useEffect (() => {
-    loadCaptchaEnginge(6); 
-  }, [])
+  const from = location.state?.from?.pathname || '/';
 
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    signIn(email, password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'User Login Successful',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate(from, { replace: true });
+    });
+  };
 
-    const handleLogin = event => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password);
-        signIn(email, password)
-          .then(result => {
-            const user = result.user;
-            console.log(user)
-            Swal.fire({
-              position: 'top',
-              icon: 'success',
-              title: 'User Login Successfull',
-              showConfirmButton: false,
-              timer: 1500
-            });
-            navigate(from, { replace: true });
-          })
-    }
+  return (
+    <div className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
+      <div className="md:w-1/3 max-w-sm">
+      
+      </div>
 
-    const handleValidateCaptcha = (e) => {
-      const user_captcha_value = e.target.value;
-      if (validateCaptcha(user_captcha_value)){
-          setDisable(false)
-      }
-      else{
-          setDisable(true)
-      }
-    }
-    return (
-     <>
-    
-        <div className="hero min-h-screen bg-base-200">
-  <div className="hero-content flex-col md:flex-row-reverse">
-    <div className="text-center md: w-1/2 lg:text-left">
-      <h1 className="text-5xl font-bold">Login now!</h1>
-      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-    </div>
-    <div className="card  md:1/2 max-w-sm shadow-2xl bg-base-100">
-      <form onSubmit={handleLogin} className="card-body">
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input type="email" name="email" placeholder="email" className="input input-bordered" />
+      <form onSubmit={handleLogin} className="md:w-1/3 max-w-sm">
+        <label className="label">
+          <span className="label-text font-medium">Email</span>
+        </label>
+        <input
+          className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
+          type="email"
+          name="email"
+          placeholder="Email Address"
+        />
+        <label className="label">
+          <span className="label-text font-medium">Password</span>
+        </label>
+        <div className="relative">
+          <input
+            className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
+            type={passwordVisible ? 'text' : 'password'}
+            name="password"
+            placeholder="Password"
+          />
+          <span
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+            onClick={togglePasswordVisibility}
+          >
+            {passwordVisible ? <HiEyeOff /> : <HiEye />}
+          </span>
         </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Password</span>
+
+        <div className="mt-4 flex justify-between font-semibold text-sm">
+          <label className="flex text-slate-500 hover:text-slate-600 cursor-pointer">
+            <input className="mr-1" type="checkbox" />
+            <span>Remember Me</span>
           </label>
-          <input type="password" name="password" placeholder="password" className="input input-bordered" />
-          
+          <a
+            className="text-blue-600 hover:text-blue-700 hover:underline hover:underline-offset-4"
+            href="#"
+          >
+            Forgot Password?
+          </a>
         </div>
-        <div className="form-control">
-          <label className="label">
-          <LoadCanvasTemplate />
-          </label>
-          <input onBlur={handleValidateCaptcha} type="text"  name="captcha" placeholder="type the captcha" className="input input-bordered" />
-          
+
+        <div className="text-center md:text-left">
+          <button
+            className="mt-4 bg-blue-600 hover:bg-blue-700 px-4 py-2 text-white uppercase rounded text-xs tracking-wider"
+            type="submit"
+          >
+            Login
+          </button>
         </div>
-        <div className="form-control mt-6">
-         
-          <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
+        <div className="my-5 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+          <p className="mx-4 mb-0 text-center font-semibold text-slate-500">
+            Or
+          </p>
+        </div>
+ 
+
+        <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">
+          Dont have an account?{' '}
+          <Link
+            className="text-orange-400 hover:underline hover:underline-offset-4"
+            to="/signup"
+          >
+            Register
+          </Link>
         </div>
       </form>
-      <p><small>New Here? <Link className='text-orange-500' to='/signup'> Create an account</Link></small></p>
-
     </div>
-  </div>
-</div>
-     </>
-    );
-};
+  );
+}
 
 export default Login;
