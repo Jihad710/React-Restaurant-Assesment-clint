@@ -4,7 +4,7 @@ const useMenu = () => {
     const [menu, setMenu] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        fetch('https://react-restaurant-assesment-server.vercel.app/menu')
+        fetch('menu.json')
           .then(res => res.json())
           .then(data => {
             setMenu(data);
