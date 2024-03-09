@@ -25,14 +25,7 @@ const Navbar = () => {
       <li>
       <Link>Contact Us</Link>
       </li>
-      {
-          user ? <>
-          
-          <button onClick={handleLogOut} className="btn btn-ghost">Log Out</button>
-          </> : <> 
-          <li><Link to='/login'>Login</Link></li>
-          </>
-         }
+    
     </>
     
   );
@@ -72,7 +65,14 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to="/login" className="btn">Login</Link>
+        {
+          user ? <>
+          
+          <button onClick={handleLogOut} className="btn btn-ghost">Log Out</button>
+          </> : <> 
+          <li><Link to='/login'>Login</Link></li>
+          </>
+         }
         </div>
       </div>
     </>

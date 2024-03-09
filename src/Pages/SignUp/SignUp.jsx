@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../../assets//Featured/ella-olsson-2IxTgsgFi-s-unsplash.jpg";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import Swal from "sweetalert2";
@@ -36,12 +37,15 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
-        <div className="md:w-1/3 max-w-sm"></div>
+      <div className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0 bg-black ">
+        <div className="md:w-1/3 max-w-sm">
+        <img src={logo} alt="" />
+        </div>
+       
 
-        <form onSubmit={handleSubmit(onSubmit)} className="md:w-1/3 max-w-sm">
+        <form onSubmit={handleSubmit(onSubmit)} className="md:w-1/3 max-w-sm ">
           <label className="label">
-            <span className="label-text font-medium">Name</span>
+            <span className="label-text font-medium text-white">Name</span>
             {errors.name && (
               <span className="text-red-600">Name is required</span>
             )}
@@ -54,7 +58,7 @@ const SignUp = () => {
             placeholder="Name"
           />
           <label className="label">
-            <span className="label-text font-medium">Email</span>
+            <span className="label-text font-medium text-white">Email</span>
             {errors.email && (
               <span className="text-red-600">Email field is required</span>
             )}
@@ -67,7 +71,7 @@ const SignUp = () => {
             placeholder="Email"
           />
           <label className="label">
-            <span className="label-text font-medium">Password</span>
+            <span className="label-text font-medium text-white">Password</span>
 
             {errors.password?.type === "required" && (
               <p className="text-red-600">Password is required</p>
@@ -100,7 +104,7 @@ const SignUp = () => {
             placeholder="Password"
           />
           <label className="label">
-            <span className="label-text font-medium">Confirm Password</span>
+            <span className="label-text font-medium text-white">Confirm Password</span>
             {errors.confirmPassword && (
               <span className="text-red-600">
                 {errors.confirmPassword.type === "required"
@@ -122,7 +126,7 @@ const SignUp = () => {
             placeholder="Confirm Password"
           />
           <label className="label">
-            <span className="label-text font-medium">Photo URL</span>
+            <span className="label-text font-medium text-white">Photo URL</span>
             {errors.photoURL && (
               <span className="text-red-600">Photo URL is required</span>
             )}
